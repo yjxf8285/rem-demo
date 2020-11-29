@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <style>
+        /* 默认情况：1rem = 16px = html的font-size */
+        /* 170px 换成rem 的公式就是 170/16 */
+        /* 例如基于iPhone6的设计稿 30px的rem值 就是30/37.5 */
+        /* 因为要考虑的高清屏的像素是2x所以实际上网页端的30px还得再除以2，最终要显示为15px */
+        /* 所以为了方便起见算html的font-size就除20而不是除10 那么根元素就是375/20=18.75 */
+        /* 但是每次写rem都得自己除18.75太麻烦了，所以用scss的函数来帮我们就方便很多 */
+    </style>
+</head>
+
+<body>
+
+    <div id="main">
+        我是文字(设计稿标注30px) 适配iphone 6的大小应该是15px ，iphone5则为12.8px
+    </div>
+    <div class="hello">
+        <div class="b">b</div>
+    </div>
+    <script>
+        let htmlDom = document.getElementsByTagName('html')[0]
+        let setFontSize = function () {
+            let htmlWidth = document.documentElement.clientWidth //(viewport宽度)
+            htmlDom.style.fontSize = htmlWidth / 10 + 'px' //iphone6=37.5
+        }
+        setFontSize()
+        window.addEventListener('resize', (e) => { // 每次窗口大小发生改变的时候都要动态的设置fontsize的值
+            setFontSize()
+        })
+    </script>
+    <script src="./dist/bundle.js"></script>
+</body>
+
+</html>

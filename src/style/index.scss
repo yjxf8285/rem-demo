@@ -1,0 +1,18 @@
+@function px2rem($px) {
+    $rem: 37.5px; //iphone 6
+    @return ($px/$rem) + rem;
+}
+
+.hello {
+    width: px2rem(100px);
+    height:px2rem(100px);
+    background: red;
+    .b {
+        width: px2rem(50px);
+        height:px2rem(50px);
+        background: blue;
+    }
+}
+#main {
+    font-size: px2rem(15px); // 因为是2x屏，设计稿如果标注30px 页面就除以2，就是15px。
+}
